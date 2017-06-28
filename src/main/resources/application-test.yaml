@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: my_project
+  profiles: test
+
+server:
+  port: 9999
+
+kylin:
+  userName: admin
+  password: KYLIN
+  decrypt: true
+  connectionUrl: jdbc:kylin://host:7070/project_name

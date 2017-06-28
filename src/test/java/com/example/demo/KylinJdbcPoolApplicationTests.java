@@ -1,12 +1,16 @@
-# kylin-jdbc-pool
-better performance for kylin query
+package com.example.demo;
 
-## versions
-1.0.0 —— jdbc pool & RowMapper 
+import com.alibaba.fastjson.JSON;
+import com.example.demo.mapper.KylinRowMapper;
+import com.example.demo.models.Demo;
+import java.util.List;
+import javax.annotation.Resource;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.junit4.SpringRunner;
 
-## how to use ?
-
-```
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class KylinJdbcPoolApplicationTests {
@@ -36,5 +40,3 @@ public class KylinJdbcPoolApplicationTests {
   }
 
 }
-
-```
