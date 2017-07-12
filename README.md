@@ -6,6 +6,20 @@ better performance for kylin query
 
 ## how to use ?
 
+### first configure settings 
+
+```
+kylin:
+  userName: admin
+  password: KYLIN
+  decrypt: true
+  connectionUrl: jdbc:kylin://host:7070/project_name
+  poolSize: 10
+
+```
+
+### then try your business 
+
 ```
 @RunWith(SpringRunner.class)
 @SpringBootTest
