@@ -7,13 +7,13 @@ server:
   port: 9999
 
 kylin:
-  weixiaobao:
+  project1:
     userName: admin
     password: KYLIN
     decrypt: true
-    connectionUrl: jdbc:kylin://host:7070/project
-  ticauto:
+    connectionUrl: jdbc:kylin://host:7070/project1
+  project2:
     userName: admin
     password: KYLIN
     decrypt: true
-    connectionUrl: jdbc:kylin://host:7070/project
+    connectionUrl: jdbc:kylin://host:7070/project2
