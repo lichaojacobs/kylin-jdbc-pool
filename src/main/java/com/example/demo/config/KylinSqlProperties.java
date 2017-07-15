@@ -1,13 +1,11 @@
-package com.example.demo;
+package com.example.demo.config;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * Created by lichao on 2017/6/27.
  */
 @Data
-@ConfigurationProperties("kylin")
 public class KylinSqlProperties {
 
   // 用户名
