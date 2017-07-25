@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 /**
@@ -8,7 +9,8 @@ import lombok.Data;
 @Data
 public class Demo {
 
-  private String deviceId;
+  @SerializedName("device_id")
+  private String device;
   private String deviceType;
   private String eventType;
   private String eventDate;

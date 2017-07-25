@@ -12,8 +12,3 @@ kylin:
     password: KYLIN
     decrypt: true
     connectionUrl: jdbc:kylin://ali-hz-data-platform-7:7070/weixiaobao
-  ticauto:
-    userName: admin
-    password: KYLIN
-    decrypt: true
-    connectionUrl: jdbc:kylin://ali-hz-data-platform-7:7070/ticauto

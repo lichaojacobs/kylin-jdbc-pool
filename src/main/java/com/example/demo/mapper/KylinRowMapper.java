@@ -13,16 +13,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 /**
  * Created by lichao on 2017/6/27.
  */
-public class KylinRowMapper<T> extends BeanPropertyRowMapper<T> {
+public class KylinRowMapper<T> extends CommonBeanPropertyRowMapper<T> {
 
   private List<MapperPlugin> mapperPlugins;
 
-  private KylinRowMapper(Class<T> tClass, List<MapperPlugin> mapperPlugins) {
+  private KylinRowMapper(Class<T> tClass, List<MapperPlugin> mapperPlugins) throws Exception {
     super(tClass);
     this.mapperPlugins = mapperPlugins;
   }
@@ -101,7 +100,13 @@ public class KylinRowMapper<T> extends BeanPropertyRowMapper<T> {
         default:
           mapperPlugins = Collections.unmodifiableList(new ArrayList<>(this.mapperPlugins));
       }
-      return new KylinRowMapper<>(this.tClass, mapperPlugins);
+      try {
+        return new KylinRowMapper<>(this.tClass, mapperPlugins);
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+
+      return null;
     }
 
     public String toString() {
