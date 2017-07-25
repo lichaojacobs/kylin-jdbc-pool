@@ -5,6 +5,7 @@ better performance for kylin query
 
 - 1.0.0 —— jdbc pool & RowMapper 
 - 1.1.0 —— support muti data sources
+- 1.1.1 —— support gson SerializedName annotation
 
 ## how to use ?
 
