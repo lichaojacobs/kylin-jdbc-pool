@@ -11,11 +11,13 @@ import java.util.LinkedList;
 import java.util.Properties;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kylin.jdbc.Driver;
 
 /**
  * Created by lichao on 2017/6/27.
  */
+@Slf4j
 public class KylinDataSource implements DataSource {
 
   private int DEFALUT_POOL_SIZE = 10;
@@ -32,8 +34,10 @@ public class KylinDataSource implements DataSource {
       for (int i = 0; i < (poolSize > 0 ? poolSize : DEFALUT_POOL_SIZE); i++) {
         Connection connection = driverManager
             .connect(url, info);
-        connectionPoolList.add(connection);
+        connectionPoolList.add(ConnectionProxy.getProxy(connection, connectionPoolList));
       }
+      log.info("KylinDataSource has initialized {} size connection pool",
+          connectionPoolList.size());
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -114,6 +118,7 @@ public class KylinDataSource implements DataSource {
       return (Connection) proxed;
     }
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
       if (method.getName().equals(DEFAULT_CLOSE_METHOD)) {
         synchronized (pool) {
