@@ -39,14 +39,7 @@ public class KylinSqlConfiguration implements BeanFactoryPostProcessor, Environm
       String prefixName,
       KylinSqlProperties sqlProperties) {
 
-    DataSource baseDataSource = new KylinDataSource(
-        JdbcPoolConfig.DEFAULT_DRIVER_CLASS_NAME,
-        sqlProperties.getConnectionUrl(),
-        sqlProperties.getUserName(),
-        sqlProperties.getPassword(),
-        sqlProperties.getPoolSize() > 0 ? sqlProperties.getPoolSize()
-            : JdbcPoolConfig.DEFAULT_INITIAL_SIZE);
-
+    DataSource baseDataSource = new KylinDataSource(sqlProperties);
     register(beanFactory, new JdbcTemplate(baseDataSource), prefixName + "JdbcTemplateFactory",
         prefixName);
   }

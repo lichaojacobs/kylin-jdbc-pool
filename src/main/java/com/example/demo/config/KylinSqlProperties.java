@@ -8,6 +8,9 @@ import lombok.Data;
 @Data
 public class KylinSqlProperties {
 
+  private static final String DEFAULT_DRIVER_CLASS_NAME = "org.apache.kylin.jdbc.Driver";
+  private static final int DEFAULT_POOL_SIZE = 10;
+
   // 用户名
   private String userName;
 
@@ -20,5 +23,7 @@ public class KylinSqlProperties {
   // 主库地址
   private String connectionUrl;
 
-  private int poolSize;
+  private int poolSize = DEFAULT_POOL_SIZE;
+
+  private String driverClassName = DEFAULT_DRIVER_CLASS_NAME;
 }

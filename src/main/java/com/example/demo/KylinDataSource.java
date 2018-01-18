@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.config.KylinSqlProperties;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -20,20 +21,19 @@ import org.apache.kylin.jdbc.Driver;
 @Slf4j
 public class KylinDataSource implements DataSource {
 
-  private int DEFALUT_POOL_SIZE = 10;
-
+  private static final Long MAX_WAIT_TIME = 10000L;
   private LinkedList<Connection> connectionPoolList = new LinkedList<>();
 
-  public KylinDataSource(String driver, String url, String userName, String password,
-      int poolSize) {
+  public KylinDataSource(KylinSqlProperties sqlProperties) {
     try {
-      Driver driverManager = (Driver) Class.forName(driver).newInstance();
+      Driver driverManager = (Driver) Class.forName(sqlProperties.getDriverClassName())
+          .newInstance();
       Properties info = new Properties();
-      info.put("user", userName);
-      info.put("password", password);
-      for (int i = 0; i < (poolSize > 0 ? poolSize : DEFALUT_POOL_SIZE); i++) {
+      info.put("user", sqlProperties.getUserName());
+      info.put("password", sqlProperties.getPassword());
+      for (int i = 0; i < sqlProperties.getPoolSize(); i++) {
         Connection connection = driverManager
-            .connect(url, info);
+            .connect(sqlProperties.getConnectionUrl(), info);
         connectionPoolList.add(ConnectionProxy.getProxy(connection, connectionPoolList));
       }
       log.info("KylinDataSource has initialized {} size connection pool",
@@ -46,11 +46,11 @@ public class KylinDataSource implements DataSource {
   @Override
   public Connection getConnection() throws SQLException {
     synchronized (connectionPoolList) {
-      if (connectionPoolList.size() == 0) {
+      if (connectionPoolList.size() <= 0) {
         try {
-          connectionPoolList.wait();
+          connectionPoolList.wait(MAX_WAIT_TIME);
         } catch (InterruptedException e) {
-          e.printStackTrace();
+          throw new SQLException("getConnection timeout..." + e.getMessage());
         }
       }
 
