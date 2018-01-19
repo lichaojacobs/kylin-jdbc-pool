@@ -21,11 +21,12 @@ import org.apache.kylin.jdbc.Driver;
 @Slf4j
 public class KylinDataSource implements DataSource {
 
-  private static final Long MAX_WAIT_TIME = 10000L;
   private LinkedList<Connection> connectionPoolList = new LinkedList<>();
+  private long maxWaitTime;
 
   public KylinDataSource(KylinSqlProperties sqlProperties) {
     try {
+      this.maxWaitTime = sqlProperties.getMaxWaitTime();
       Driver driverManager = (Driver) Class.forName(sqlProperties.getDriverClassName())
           .newInstance();
       Properties info = new Properties();
@@ -48,7 +49,7 @@ public class KylinDataSource implements DataSource {
     synchronized (connectionPoolList) {
       if (connectionPoolList.size() <= 0) {
         try {
-          connectionPoolList.wait(MAX_WAIT_TIME);
+          connectionPoolList.wait(maxWaitTime);
         } catch (InterruptedException e) {
           throw new SQLException("getConnection timeout..." + e.getMessage());
         }
