@@ -1,11 +1,17 @@
 # kylin-jdbc-pool
-better performance for kylin query
+better performance for kylin query with spring boot project
 
+## spring boot version
+
+- 1.5.4.RELEASE
+
+-
 ## versions
 
 - 1.0.0 —— jdbc pool & RowMapper 
 - 1.1.0 —— support muti data sources
 - 1.1.1 —— support gson SerializedName annotation
+- 2.0.0 —— refactor project architecture
 
 ## how to use ?
 
@@ -18,11 +24,13 @@ kylin:
     password: KYLIN
     decrypt: true
     connectionUrl: jdbc:kylin://host:7070/project1
+    maxWaitTime: 10000 #ms
   project2:
     userName: admin
     password: KYLIN
     decrypt: true
     connectionUrl: jdbc:kylin://host:7070/project2
+    maxWaitTime: 10000 #ms
 
 ```
 

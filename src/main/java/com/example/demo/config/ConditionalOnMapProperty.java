@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Conditional;
 
 /**
- * Created by lichao on 2017/7/4.
+ * @author lichao
+ * @date 2017/11/12
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})

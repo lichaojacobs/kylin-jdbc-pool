@@ -29,7 +29,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Created by lichao on 2017/7/25.
+ * @author lichao
+ * @date 2017/11/12
  */
 public class CommonBeanPropertyRowMapper<T> implements RowMapper<T> {
 
@@ -147,6 +148,7 @@ public class CommonBeanPropertyRowMapper<T> implements RowMapper<T> {
     return name.toLowerCase(Locale.US);
   }
 
+  @Override
   public T mapRow(ResultSet rs, int rowNumber) throws SQLException {
     Assert.state(this.mappedClass != null, "Mapped class was not specified");
     T mappedObject = BeanUtils.instantiateClass(this.mappedClass);

@@ -17,12 +17,13 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * Created by lichao on 2017/6/27.
+ * @author lichao
+ * @date 2017/11/12
  */
 @Slf4j
 @Configuration
 @ConditionalOnMapProperty(prefix = "kylin.")
-public class KylinSqlConfiguration implements BeanFactoryPostProcessor, EnvironmentAware {
+public class KylinJdbcPoolConfiguration implements BeanFactoryPostProcessor, EnvironmentAware {
 
   private ConfigurableEnvironment environment;
 

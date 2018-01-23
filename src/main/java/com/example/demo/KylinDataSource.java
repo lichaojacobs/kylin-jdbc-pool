@@ -16,7 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kylin.jdbc.Driver;
 
 /**
- * Created by lichao on 2017/6/27.
+ * @author lichao
+ * @date 2017/11/12
  */
 @Slf4j
 public class KylinDataSource implements DataSource {
@@ -40,7 +41,7 @@ public class KylinDataSource implements DataSource {
       log.info("KylinDataSource has initialized {} size connection pool",
           connectionPoolList.size());
     } catch (Exception e) {
-      e.printStackTrace();
+      log.error("kylinDataSource initialize error, ex: ", e);
     }
   }
 

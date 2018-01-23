@@ -15,7 +15,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by lichao on 2017/6/27.
+ * @author lichao
+ * @date 2017/11/12
  */
 public class KylinRowMapper<T> extends CommonBeanPropertyRowMapper<T> {
 
@@ -109,6 +110,7 @@ public class KylinRowMapper<T> extends CommonBeanPropertyRowMapper<T> {
       return null;
     }
 
+    @Override
     public String toString() {
       return "KylinRowMapper.KylinRowMapperBuilder(tClass=" + this.tClass + ", mapperPlugins="
           + this.mapperPlugins + ")";

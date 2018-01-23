@@ -23,7 +23,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Created by lichao on 2017/6/27.
+ * @author lichao
+ * @date 2017/11/12
  */
 public class MapperPlugin {
 

@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 /**
- * Created by lichao on 2017/6/28.
+ * @author lichao
+ * @date 2017/11/12
  */
 @Data
 public class Demo {

@@ -8,7 +8,8 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
- * Created by lichao on 2017/7/4.
+ * @author lichao
+ * @date 2017/11/12
  */
 public class MapPropertyCondition extends SpringBootCondition {
 
