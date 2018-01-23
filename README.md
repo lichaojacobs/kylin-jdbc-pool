@@ -5,7 +5,6 @@ better performance for kylin query with spring boot project
 
 - 1.5.4.RELEASE
 
--
 ## versions
 
 - 1.0.0 —— jdbc pool & RowMapper 
