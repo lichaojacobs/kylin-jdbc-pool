@@ -1,8 +1,9 @@
 package com.example.demo;
 
-import com.alibaba.fastjson.JSON;
 import com.example.demo.mapper.KylinRowMapper;
 import com.example.demo.models.Demo;
+import com.google.gson.Gson;
+
 import java.util.List;
 import javax.annotation.Resource;
 import org.junit.Test;
@@ -15,6 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class KylinJdbcPoolApplicationTests {
 
+  private static final Gson GSON = new Gson();
+
   @Resource(name = "kylinJdbcTemplate")
   JdbcTemplate jdbcTemplate;
 
@@ -22,9 +25,7 @@ public class KylinJdbcPoolApplicationTests {
   public void test() {
     int countResult = jdbcTemplate
         .queryForObject("select count(*) from SCHEMA.table",
-            (resultSet, i) -> {
-              return resultSet.getInt(1);
-            });
+            (resultSet, i) -> resultSet.getInt(1));
 
     System.out.println("testResult: " + countResult);
   }
@@ -36,7 +37,7 @@ public class KylinJdbcPoolApplicationTests {
             KylinRowMapper.getDefault(
                 Demo.class));
 
-    System.out.println(JSON.toJSONString(demoList));
+    System.out.println(GSON.toJson(demoList));
   }
 
 }
